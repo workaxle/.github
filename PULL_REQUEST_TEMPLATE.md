@@ -51,4 +51,6 @@ For example environment variables need to be set or task executed.
 -->
 
 - [ ] No
-- [ ] Yes
+- [ ] Yes, and this is what needs to be done:
+
+_please replace this with instructions if there are any_

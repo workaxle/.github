@@ -30,11 +30,11 @@ Please set the proper Jira link.
 
 [Jira Link](https://workaxle.atlassian.net/browse/WA-XXX)
 
-## QA Instructions, Screenshots, Recordings
+## QA required?
 
-_Please replace this line with instructions on how to test your changes, a note
-on the devices and browsers this has been tested on, as well as any relevant
-images for UI changes._
+- [ ] No
+- [ ] Yes, it does not require additional instructions for QA team.
+- [ ] Yes, specific instructions provided in appropriate task in Jira.
 
 ## Added/updated tests?
 _We encourage you to keep the code coverage percentage at 80% and above._

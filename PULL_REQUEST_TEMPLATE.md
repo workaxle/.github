@@ -12,14 +12,6 @@
      - 📗 Update any related documentation and include any relevant screenshots.
 -->
 
-## What type of PR is this? (check all applicable)
-
-- [ ] Feature
-- [ ] Bug Fix
-- [ ] Optimization
-- [ ] Refactor
-- [ ] Documentation Update
-
 ## Description
 
 ## Related Tickets & Documents

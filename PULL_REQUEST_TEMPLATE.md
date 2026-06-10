@@ -14,14 +14,6 @@
 
 ## Description
 
-## Related Tickets & Documents
-
-<!--
-Please set the proper Jira link.
--->
-
-[Jira Link](https://workaxle.atlassian.net/browse/WA-XXX)
-
 ## Added/updated tests?
 
 - [ ] Yes

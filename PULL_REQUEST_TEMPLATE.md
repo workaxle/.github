@@ -30,12 +30,6 @@ Please set the proper Jira link.
 
 [Jira Link](https://workaxle.atlassian.net/browse/WA-XXX)
 
-## QA required?
-
-- [ ] No
-- [ ] Yes, it does not require additional instructions for QA team.
-- [ ] Yes, specific instructions provided in appropriate task in Jira.
-
 ## Added/updated tests?
 
 - [ ] Yes

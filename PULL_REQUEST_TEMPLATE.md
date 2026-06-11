@@ -36,7 +36,7 @@ Hard to answer Deploy safety? That usually means this should be two PRs — spli
 **Manual steps** <!-- q:manual --> — must a human do anything beyond the normal release process (env vars, data task, infra)? Creating a default-off flag does not count; deleting or turning one on does.
 
 - [ ] None — no human action needed
-- [ ] Yes — steps are in Jira: WA-XXXXX
+- [ ] Yes — steps (write here or link Jira): your_steps_here
 
 **Undo** <!-- q:undo --> — if this breaks prod, we get back to normal by:
 

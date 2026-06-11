@@ -1,6 +1,7 @@
 <!--
-Your PR title becomes the squash commit on main — format: [WA-123] feat(scope): subject
-Struggling to answer Deploy safety? That's usually two PRs — split it.
+Your PR title becomes the squash commit message — format: [WA-123] feat(scope): subject
+Cherry-picking to production? Answer Deploy safety against the production branch, not main.
+Hard to answer Deploy safety? That usually means this should be two PRs — split it.
 -->
 
 ## Description
@@ -8,38 +9,39 @@ Struggling to answer Deploy safety? That's usually two PRs — split it.
 ## Added/updated tests?
 
 - [ ] Yes
-- [ ] No, and this is why: _please replace this line with details on why tests
-      have not been included_
+- [ ] No, because: your_reason_here
 
 ## Deploy safety
 
 <!-- Rule: every merge must be deployable as-is. Anything that could degrade prod goes behind a flag.
-     Tick exactly ONE box per question. Options with a colon need the answer filled in. -->
+     Tick exactly ONE box per question. Replace placeholder tokens; keep answers on the same line as the box. -->
 
-**Old & new together** — during deploy, the old and new versions run at the same time, sharing the DB, queues, and jobs.
+**Old & new together** <!-- q:compat --> — after this ships, old and new versions run at the same time (rolling pods, open browser tabs, cached bundles, old app installs) and share the same DB, queues, and APIs.
 
-- [ ] Nothing changed shape (DB, proto, events, GraphQL, job args)
-- [ ] Something changed — it's safe because: <!-- one line, e.g. "new column, old code never reads it" -->
+- [ ] Nothing changed format (DB, proto, events, GraphQL, job args or class names — anything saved or sent between processes)
+- [ ] Format changed — it is safe because: your_reason_here
 
-**Deploy order** — can this go out on its own, before or after any other repo?
+**Deploy order** <!-- q:order --> — can this deploy alone, before or after any other repo?
 
-- [ ] Yes, order doesn't matter
-- [ ] No — order is in Jira: <!-- WA link --> — and wrong order degrades, doesn't break
+- [ ] Yes, order does not matter
+- [ ] No — wrong order makes things slower or limited, but nothing breaks; order is in Jira: WA-XXXXX
 
-**Who sees it** — what can a customer reach the moment this deploys?
+**Who sees it** <!-- q:exposure --> — what can a customer reach the moment this deploys?
 
 - [ ] Everything here is finished and meant to be live
-- [ ] Hidden behind off-by-default flag: `flag_name`
-- [ ] Removing flag: `flag_name` — checked it's ON for all prod tenants
-- [ ] Nothing — code isn't hooked up to any endpoint, consumer, or job
+- [ ] Hidden behind off-by-default flag: `YOUR_FLAG_NAME`
+- [ ] Removing flag: `YOUR_FLAG_NAME` — I checked it is ON for all prod tenants in every cluster
+- [ ] Nothing customers can reach — internal only (refactor, dependency bump, event plumbing, dead code)
 
-**Manual steps** — anything a human must do before/during/after this deploys (env vars, Flipt entry, data task, infra)?
+**Manual steps** <!-- q:manual --> — must a human do anything beyond the normal release process (env vars, data task, infra)? Creating a default-off flag does not count; deleting or turning one on does.
 
-- [ ] None — it deploys itself
-- [ ] Yes — steps in Jira: <!-- WA link -->
+- [ ] None — no human action needed
+- [ ] Yes — steps are in Jira: WA-XXXXX
 
-**Undo** — if this breaks prod, we get back to normal by:
+**Undo** <!-- q:undo --> — if this breaks prod, we get back to normal by:
 
-- [ ] Turning off flag: `flag_name` — no deploy needed
+- [ ] Turning off flag: `YOUR_FLAG_NAME` — no deploy needed
 - [ ] `git revert` + redeploy — acceptable; could a flag have made this instant?
-- [ ] Neither works cleanly — plan B is: <!-- one line -->
+- [ ] Neither works — recovery plan: your_plan_here
+
+<!-- deploy-safety:end -->

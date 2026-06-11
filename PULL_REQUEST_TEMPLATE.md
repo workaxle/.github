@@ -21,10 +21,10 @@ Hard to answer Deploy safety? That usually means this should be two PRs — spli
 - [ ] Yes — nothing they share changed (data, contracts, messages)
 - [ ] Something shared changed — still safe because: your_reason_here
 
-**Deploy order** <!-- q:order --> — can this deploy alone, before or after any other repo?
+**Deploy order** <!-- q:order --> — does this depend on another service or repo deploying first?
 
-- [ ] Yes, order does not matter
-- [ ] No — wrong order makes things slower or limited, but nothing breaks; order is in Jira: WA-XXXXX
+- [ ] No — this can deploy alone, in any order
+- [ ] Yes — depends on: SERVICE_NAME, details in Jira: WA-XXXXX — wrong order makes things slower or limited, but nothing breaks
 
 **Who sees it** <!-- q:exposure --> — what can a customer reach the moment this deploys?
 

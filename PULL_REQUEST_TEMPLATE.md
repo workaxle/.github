@@ -17,11 +17,15 @@ Hard to answer Deploy safety? That usually means this should be two PRs — spli
      Tick exactly ONE box per question. Replace placeholder tokens; keep answers on the same line as the box. -->
 
 **Old & new together** <!-- q:compat --> — during deploy, old and new code run at the same time. Is that safe here?
+<!-- Not safe? It cannot merge — split into safe steps (add first, remove later). Ask the Backend Guild if unsure. -->
 
 - [ ] Yes — nothing they share changed (data, contracts, messages)
-- [ ] Something shared changed — still safe because: your_reason_here
+- [ ] Only additions (new column, field, event, endpoint) — nothing removed, renamed, or changed in meaning
+- [ ] Something else changed — still safe because: your_reason_here
 
 **Deploy order** <!-- q:order --> — does this depend on another service or repo deploying first?
+<!-- Would wrong order BREAK something? Order is never guaranteed (hotfixes, rollbacks) — gate the new caller
+     behind an off flag instead, and flip it when the dependency is live. -->
 
 - [ ] No — this can deploy alone, in any order
 - [ ] Yes — depends on: SERVICE_NAME, details in Jira: WA-XXXXX — wrong order makes things slower or limited, but nothing breaks

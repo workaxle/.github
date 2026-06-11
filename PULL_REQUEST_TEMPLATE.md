@@ -1,56 +1,51 @@
 <!--
-     For Work In Progress Pull Requests, please use the Draft PR feature,
-     see https://github.blog/2019-02-14-introducing-draft-pull-requests/ for further details.
-
-     For a timely review/response, please avoid force-pushing additional
-     commits if your PR already received reviews or comments.
-
-     Before submitting a Pull Request, please ensure you've done the following:
-     - 👷‍♀️ Create small PRs. In most cases this will be possible.
-     - ✅ Provide tests for your changes.
-     - 📝 Use descriptive commit messages.
-     - 📗 Update any related documentation and include any relevant screenshots.
+Your PR title becomes the squash commit message — format: [WA-123] feat(scope): subject
+Cherry-picking to production? Answer Deploy safety against the production branch, not main.
+Hard to answer Deploy safety? That usually means this should be two PRs — split it.
 -->
-
-## What type of PR is this? (check all applicable)
-
-- [ ] Feature
-- [ ] Bug Fix
-- [ ] Optimization
-- [ ] Refactor
-- [ ] Documentation Update
 
 ## Description
-
-## Related Tickets & Documents
-
-<!--
-Please set the proper Jira link.
--->
-
-[Jira Link](https://workaxle.atlassian.net/browse/WA-XXX)
-
-## QA required?
-
-- [ ] No
-- [ ] Yes, it does not require additional instructions for QA team.
-- [ ] Yes, specific instructions provided in appropriate task in Jira.
 
 ## Added/updated tests?
 
 - [ ] Yes
-- [ ] No, and this is why: _please replace this line with details on why tests
-      have not been included_
-- [ ] I need help with writing tests
+- [ ] No, because: your_reason_here
 
-## Are there any actions required during deployment?
+## Deploy safety
 
-<!--
-If yes is selected please describe what needs to be done before/after deployment.
-For example environment variables need to be set or task executed.
--->
+<!-- Rule: every merge must be deployable as-is. Anything that could degrade prod goes behind a flag.
+     Tick exactly ONE box per question. Replace placeholder tokens; keep answers on the same line as the box. -->
 
-- [ ] No
-- [ ] Yes, and this is what needs to be done:
+**Old & new together** <!-- q:compat --> — during deploy, old and new code run at the same time. Is that safe here?
+<!-- Not safe? It cannot merge — split into safe steps (add first, remove later). Ask the Backend Guild if unsure. -->
 
-_please replace this with instructions if there are any_
+- [ ] Yes — nothing they share changed (data, contracts, messages)
+- [ ] Only additions (new column, field, event, endpoint) — nothing removed, renamed, or changed in meaning
+- [ ] Something else changed — still safe because: your_reason_here
+
+**Deploy order** <!-- q:order --> — does this depend on another service or repo deploying first?
+<!-- Would wrong order BREAK something? Order is never guaranteed (hotfixes, rollbacks) — gate the new caller
+     behind an off flag instead, and flip it when the dependency is live. -->
+
+- [ ] No — this can deploy alone, in any order
+- [ ] Yes — depends on: SERVICE_NAME, details in Jira: WA-XXXXX — wrong order makes things slower or limited, but nothing breaks
+
+**Who sees it** <!-- q:exposure --> — what can a customer reach the moment this deploys?
+
+- [ ] Everything here is finished and meant to be live
+- [ ] Hidden behind off-by-default flag: `YOUR_FLAG_NAME`
+- [ ] Removing flag: `YOUR_FLAG_NAME` — I checked it is ON for all prod tenants in every cluster
+- [ ] Nothing customers can reach — internal only (refactor, dependency bump, event plumbing, dead code)
+
+**Manual steps** <!-- q:manual --> — must a human do anything beyond the normal release process (env vars, data task, infra)? Creating a default-off flag does not count; deleting or turning one on does.
+
+- [ ] None — no human action needed
+- [ ] Yes — steps (write here or link Jira): your_steps_here
+
+**Undo** <!-- q:undo --> — if this breaks prod, we get back to normal by:
+
+- [ ] Turning off flag: `YOUR_FLAG_NAME` — no deploy needed
+- [ ] `git revert` + redeploy — acceptable; could a flag have made this instant?
+- [ ] Neither works — recovery plan: your_plan_here
+
+<!-- deploy-safety:end -->

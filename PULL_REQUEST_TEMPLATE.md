@@ -33,6 +33,11 @@ Struggling to answer Deploy safety? That's usually two PRs — split it.
 - [ ] Removing flag: `flag_name` — checked it's ON for all prod tenants
 - [ ] Nothing — code isn't hooked up to any endpoint, consumer, or job
 
+**Manual steps** — anything a human must do before/during/after this deploys (env vars, Flipt entry, data task, infra)?
+
+- [ ] None — it deploys itself
+- [ ] Yes — steps in Jira: <!-- WA link -->
+
 **Undo** — if this breaks prod, we get back to normal by:
 
 - [ ] Turning off flag: `flag_name` — no deploy needed

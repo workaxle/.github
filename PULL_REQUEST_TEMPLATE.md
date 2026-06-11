@@ -16,10 +16,10 @@ Hard to answer Deploy safety? That usually means this should be two PRs — spli
 <!-- Rule: every merge must be deployable as-is. Anything that could degrade prod goes behind a flag.
      Tick exactly ONE box per question. Replace placeholder tokens; keep answers on the same line as the box. -->
 
-**Old & new together** <!-- q:compat --> — after this ships, old and new versions run at the same time (rolling pods, open browser tabs, cached bundles, old app installs) and share the same DB, queues, and APIs.
+**Old & new together** <!-- q:compat --> — during deploy, old and new code run at the same time. Is that safe here?
 
-- [ ] Nothing changed format (DB, proto, events, GraphQL, job args or class names — anything saved or sent between processes)
-- [ ] Format changed — it is safe because: your_reason_here
+- [ ] Yes — nothing they share changed (data, contracts, messages)
+- [ ] Something shared changed — still safe because: your_reason_here
 
 **Deploy order** <!-- q:order --> — can this deploy alone, before or after any other repo?
 

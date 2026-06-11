@@ -10,7 +10,6 @@ Struggling to answer Deploy safety? That's usually two PRs — split it.
 - [ ] Yes
 - [ ] No, and this is why: _please replace this line with details on why tests
       have not been included_
-- [ ] I need help with writing tests
 
 ## Deploy safety
 
